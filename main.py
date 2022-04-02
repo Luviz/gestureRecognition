@@ -20,6 +20,8 @@ parser.add_argument(
     help="use ip cam you can set ipCam url in ./configs.json ",
 )
 
+parser.add_argument("--recoder", action="store_true")
+
 args = parser.parse_args()
 
 
@@ -27,7 +29,10 @@ def main():
     use_ip_cam = (args.use_ip_cam) and (configs is not None) and ("ipCam" in configs)
     cam = configs["ipCam"] if use_ip_cam else None
 
-    recoder(cam)
+    if args.recoder:
+        recoder(cam)
+    else:
+        gesture_recognition(cam)
     # print(argv)
 
 
