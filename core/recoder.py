@@ -1,7 +1,7 @@
 import cv2 as cv
 
 
-def recoder(cam_src=None):
+def gesture_recoder(cam_src=None):
     if cam_src == None:
         cam_src = 0
     cap = cv.VideoCapture(cam_src)

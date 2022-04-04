@@ -1,5 +1,5 @@
 import argparse
-from core import recoder
+from core.recoder import gesture_recoder
 
 
 class ArgumentParser:
@@ -23,7 +23,7 @@ class ArgumentParser:
         parser_mode.add_argument(
             "-r",
             "--recoder",
-            const=recoder,
+            const=gesture_recoder,
             **mode_common_settings,
             help=helps["recoder"]
         )
