@@ -43,9 +43,9 @@ class HandProcessor(mph.Hands):
             for ix, h in enumerate(handedness)
         ]
 
-    def get_landmark_as_np_arr(self):
+    def get_landmark_as_np_arr(self, scale=[1, 1]):
         arr = []
         for lms in self.get_landmarks():
-            arr.append([[lm.x, lm.y] for lm in lms.landmark])
+            arr.append([np.array([lm.x, lm.y]) * scale for lm in lms.landmark])
 
         return np.array(arr)

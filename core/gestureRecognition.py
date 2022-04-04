@@ -21,8 +21,8 @@ def gesture_recognition(cam_src=None):
                 h, w, _ = frame.shape
                 handProcessor.proc(frame[:, :, ::-1])
 
-                for hand in handProcessor.get_landmark_as_np_arr():
-                    for h_lm in np.array(hand * [w, h], dtype=np.int0):
+                for hand in handProcessor.get_landmark_as_np_arr([w,h]).astype(np.int0):
+                    for h_lm in hand:
                         cv.circle(frame, h_lm, 5, (200, 0, 0), -1)
 
                 cv.imshow("main", frame)
