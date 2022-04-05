@@ -30,9 +30,9 @@ class HandGestureModel:
         self.model = tf.keras.models.Sequential(
             [
                 tf.keras.layers.Flatten(input_shape=(21, 2)),
-                tf.keras.layers.Dense(80, activation="relu"),
+                tf.keras.layers.Dense(42, activation="relu"),
                 tf.keras.layers.Dropout(0.2),
-                tf.keras.layers.Dense(80, activation="relu"),
+                tf.keras.layers.Dense(42, activation="relu"),
                 tf.keras.layers.Dropout(0.2),
                 tf.keras.layers.Dense(len(gesture_types)),
             ]
