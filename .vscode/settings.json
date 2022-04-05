@@ -1,5 +1,5 @@
 {
   "python.formatting.provider": "black",
   "editor.tabSize": 4,
-  "cSpell.words": ["astype", "imshow", "savetxt"]
+  "cSpell.words": ["astype", "imshow", "keras", "ndarray", "savetxt"]
 }
