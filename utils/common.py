@@ -7,14 +7,22 @@ def get_configs(file_name="configs.json"):
         return json.load(f)
 
 
-def write_text(frame, org, text, fg=(200, 200, 200), bg=(80, 0, 80)):
+def write_text(
+    frame,
+    text,
+    org,
+    fg=(200, 200, 200),
+    bg=(0, 0, 0),
+    font=cv.FONT_HERSHEY_SIMPLEX,
+    scale=1,
+):
     x, y = org
     cv.putText(
         frame,
         text,
         (x, y),
-        cv.FONT_HERSHEY_PLAIN,
-        fontScale=3,
+        font,
+        fontScale=scale,
         color=bg,
         thickness=6,
     )
@@ -22,8 +30,8 @@ def write_text(frame, org, text, fg=(200, 200, 200), bg=(80, 0, 80)):
         frame,
         text,
         (x, y),
-        cv.FONT_HERSHEY_PLAIN,
-        fontScale=3,
+        font,
+        fontScale=scale,
         color=fg,
         thickness=2,
     )

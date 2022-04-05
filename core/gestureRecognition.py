@@ -33,7 +33,7 @@ def gesture_recognition(cam_src=None):
                         cv.circle(frame, h_lm, 5, (200, 0, 0), -1)
 
                     pt = np.average(hand * [w, h], axis=0).astype(np.int0)
-                    write_text(frame, pt, txt)
+                    write_text(frame, txt, pt)
 
                 cv.imshow("main", frame)
 

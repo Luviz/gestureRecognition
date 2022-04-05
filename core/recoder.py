@@ -2,6 +2,7 @@ from os import makedirs
 from sys import maxsize
 import cv2 as cv
 import numpy as np
+from utils.common import write_text
 
 
 from utils.mediapipe.handProcessor import HandProcessor
@@ -51,16 +52,9 @@ def gesture_recoder(cam_src=None):
                         cv.circle(frame, lm, 6, (0, 0, 150), -1)
                         cv.circle(frame, lm, 4, (250, 0, 0), -1)
 
-                txt = f"{constants.gesture_types[current_gesture]} {'*' if save_reflected else '' }"
-                cv.putText(
-                    frame,
-                    txt,
-                    (0, h - 20),
-                    cv.FONT_HERSHEY_PLAIN,
-                    fontScale=4,
-                    color=(200, 0, 200),
-                    thickness=4,
-                )
+                txt = f"{constants.gesture_types[current_gesture]} {'*' if save_reflected else ''}"
+
+                write_text(frame, txt, (0 + 10, h - 20))
 
                 cv.imshow("main", frame)
 
