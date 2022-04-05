@@ -1,4 +1,9 @@
 import cv2 as cv
+import numpy as np
+
+from utils.mediapipe.handProcessor import HandProcessor
+
+handProcessor = HandProcessor()
 
 
 def gesture_recoder(cam_src=None):
@@ -14,6 +19,21 @@ def gesture_recoder(cam_src=None):
             c = c + 1
             has_frame, frame = cap.read()
             if has_frame:
+                h, w, _ = frame.shape
+                handProcessor.proc(frame[:, :, ::-1])
+                for hand in handProcessor.get_landmark_as_np_arr():
+                    for lm in (hand * [w, h]).astype(np.int0):
+                        cv.circle(frame, lm, 6, (0, 0, 150), -1)
+                        cv.circle(frame, lm, 4, (250, 0, 0), -1)
+
+                    # print(handProcessor.normalize_coordinates(hand))
+                    # for m in handProcessor.normalize_coordinates(hand):
+                    #     pta = m * [w, h]
+                    #     ptb = (m * [-1, 1] + [1, 0]) * [w, h]
+
+                    #     cv.circle(frame, pta.astype(np.int0), 6, (0, 0, 200), -1)
+                    #     cv.circle(frame, ptb.astype(np.int0), 6, (200, 0, 200), -1)
+
                 cv.imshow("main", frame)
 
             waitKey = cv.waitKey(10)

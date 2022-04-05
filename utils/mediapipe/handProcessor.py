@@ -49,3 +49,8 @@ class HandProcessor(mph.Hands):
             arr.append([np.array([lm.x, lm.y]) * scale for lm in lms.landmark])
 
         return np.array(arr)
+
+    @staticmethod
+    def normalize_coordinates(hand: np.ndarray):
+        arr = hand - np.min(hand, axis=0)
+        return arr / np.max(arr, axis=0)
