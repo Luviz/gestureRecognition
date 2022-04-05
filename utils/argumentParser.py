@@ -2,9 +2,18 @@ import argparse
 from core.recoder import gesture_recoder
 
 
+def start_train_gesture(*args, **kwargs):
+    from core.trainModel import train_gesture
+
+    train_gesture()
+
+
 class ArgumentParser:
     def __init__(self):
-        helps = {"recoder": "Records hands gestures for model training."}
+        helps = {
+            "recoder": "Records hands gestures for model training.",
+            "train_gesture": "Starting the training based on ./gestures",
+        }
         mode_common_settings = {"dest": "callback", "action": "store_const"}
 
         self.parser = argparse.ArgumentParser(
@@ -25,7 +34,15 @@ class ArgumentParser:
             "--recoder",
             const=gesture_recoder,
             **mode_common_settings,
-            help=helps["recoder"]
+            help=helps["recoder"],
+        )
+
+        parser_mode.add_argument(
+            "-t",
+            "--training",
+            const=start_train_gesture,
+            **mode_common_settings,
+            help=helps["train_gesture"],
         )
 
     def parse_args(self):
