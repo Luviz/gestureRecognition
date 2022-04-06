@@ -37,7 +37,7 @@ def gesture_recognition(cam_src=None):
 
                 cv.imshow("main", frame)
 
-            waitKey = cv.waitKey(10)
+            waitKey = cv.waitKey(1)
             if waitKey > 0:
                 # print(waitKey, chr(waitKey))
                 if waitKey in [ord(str(i)) for i in range(10)]:
