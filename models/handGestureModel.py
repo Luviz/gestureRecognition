@@ -1,7 +1,10 @@
 import numpy as np
 import tensorflow as tf
+from utils.common import get_configs
 
-from utils.constants import gesture_types
+
+configs = get_configs()
+gesture_types = configs["gestureTypes"] or []
 
 
 class HandGestureModel:

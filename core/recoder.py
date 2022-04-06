@@ -2,20 +2,21 @@ from os import makedirs
 from sys import maxsize
 import cv2 as cv
 import numpy as np
-from utils.common import write_text
-
-
+from utils.common import get_configs, write_text
 from utils.mediapipe.handProcessor import HandProcessor
-import utils.constants as constants
+
 
 handProcessor = HandProcessor(max_num_hands=1)
 current_gesture = 0
 
 save_reflected = False
 
+configs = get_configs()
+gesture_types = configs["gestureTypes"] or []
+
 
 def create_folders():
-    for gesture in constants.gesture_types:
+    for gesture in gesture_types:
         try:
             makedirs(f"gestures/{gesture}")
         except FileExistsError:
@@ -31,7 +32,7 @@ def take(arr: np.ndarray, folder_path="./"):
 
 def gesture_recoder(cam_src=None):
     create_folders()
-    global current_gesture, save_reflected
+    global current_gesture, save_reflected, gesture_types
 
     if cam_src == None:
         cam_src = 0
@@ -52,7 +53,9 @@ def gesture_recoder(cam_src=None):
                         cv.circle(frame, lm, 6, (0, 0, 150), -1)
                         cv.circle(frame, lm, 4, (250, 0, 0), -1)
 
-                txt = f"{constants.gesture_types[current_gesture]} {'*' if save_reflected else ''}"
+                txt = (
+                    f"{gesture_types[current_gesture]} {'*' if save_reflected else ''}"
+                )
 
                 write_text(frame, txt, (0 + 10, h - 20))
 
@@ -60,7 +63,7 @@ def gesture_recoder(cam_src=None):
 
             waitKey = cv.waitKey(10)
             if waitKey > 0:
-                gesture_types = constants.gesture_types
+                gesture_types = gesture_types
                 if waitKey in [ord(str(i)) for i in range(10)]:
                     print(f"{waitKey=}, {key}")
                     key = int(chr(waitKey))

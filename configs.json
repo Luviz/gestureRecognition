@@ -1,3 +1,16 @@
 {
-  "ipCam": "http://aaa:aaa@192.168.50.175:8080/video"
+  "ipCam": "http://aaa:aaa@192.168.50.175:8080/video",
+  "gestureTypes": [
+    "open",
+    "close",
+    "thumb",
+    "index",
+    "middle",
+    "ring",
+    "little",
+    "v",
+    "three",
+    "horns",
+    "phone"
+  ]
 }
