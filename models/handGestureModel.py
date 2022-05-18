@@ -23,7 +23,9 @@ class HandGestureModel:
         self.gesture_types = gesture_types
 
     def fit(self, x, y, epochs=100, verbose=2):
-        self.model.fit(x, y, epochs=epochs, verbose=verbose)
+        self.model.fit(
+            x, y, epochs=epochs, verbose=verbose, workers=6, use_multiprocessing=True
+        )
 
     def predict(self, data: np.ndarray):
         prediction = self.model(data)
