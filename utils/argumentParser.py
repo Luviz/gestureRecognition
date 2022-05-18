@@ -7,6 +7,9 @@ def start_train_gesture(*args, **kwargs):
 
     train_gesture()
 
+def start_rps_game(*args, **kwargs):
+    from rps_game.game import main
+    main()
 
 class ArgumentParser:
     def __init__(self):
@@ -41,6 +44,14 @@ class ArgumentParser:
             "-t",
             "--training",
             const=start_train_gesture,
+            **mode_common_settings,
+            help=helps["train_gesture"],
+        )
+
+        parser_mode.add_argument(
+            "-g",
+            "--game",
+            const=start_rps_game,
             **mode_common_settings,
             help=helps["train_gesture"],
         )
